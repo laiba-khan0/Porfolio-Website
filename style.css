@@ -297,27 +297,7 @@ section {
   border-radius: 50%;
   position: relative;
   z-index: 2;
-  padding: 35px;
-}
-
-
-.liquid-shape {
-  position: absolute;
-  top: -120px;
-  left: -110px;
-  width: 600px;
-  height: 800px;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.liquid-shape svg {
-  width: 100%;
-  height: 100%;
-}
-
-.liquid-shape:nth-child(2) {
-  filter: blur(3px);
+  padding: px;
 }
 
    /*--------------------ABOUT SECTION-------------------- */
@@ -851,6 +831,7 @@ footer a i {
   color: var(--secon-bg-color);
 }
 
+
 /*--------parallax--------*/
 
 .scroll-scale{
@@ -1045,12 +1026,6 @@ footer a i {
         margin-bottom: 5rem;
     }
 
-    .liquid-shape {
-        width: 130%;
-        left: -10%;
-        top: -30%;
-    }
-
     .about {
         flex-direction: column-reverse;
     }
@@ -1096,4 +1071,4 @@ footer a i {
     .img-about p {
         font-size: 1rem;
     }
-}
+}  
