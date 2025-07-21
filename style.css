@@ -52,7 +52,6 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
 }
-
 header {
      background: linear-gradient(90deg, #102a51, #1f4068);
     position: fixed;
@@ -76,6 +75,8 @@ header.sticky{
     font-size: 26px;
     font-weight: 700;
     letter-spacing: 1px;
+    
+   
 }
 
 span {
@@ -106,6 +107,9 @@ span {
     border-radius: 3px;
     color: var(--secon-bg-color);
     display: none;
+    position: relative;
+    right: 1.3rem;
+
 }
 section {
   padding: 100px 10%;
@@ -612,7 +616,9 @@ section {
   background: #031d4a;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  height: 450px; /* Consistent height */
   border: 2px solid var(--hover-colour);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -627,6 +633,7 @@ section {
   width: 100%;
   height: 200px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .proj-img img {
@@ -641,25 +648,29 @@ section {
 }
 
 .proj-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 1.5rem 1.2rem;
   text-align: center;
   background: linear-gradient(to bottom, var(--hover-colour), var(--bg-color));
   width: 100%;
-  transition: 0.4s;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .proj-content h3 {
   font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0;
   color: var(--text-color);
   font-weight: 700;
 }
 
 .proj-content p {
   font-size: 0.9rem;
-  margin-bottom: 1rem;
   color: #ccc;
+  margin-bottom: 1rem;
+  flex-grow: 1;
 }
 
 .proj-content a {
@@ -674,6 +685,7 @@ section {
   outline: 2px solid #fff;
   transition: 0.3s ease;
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+  margin: auto; /* center the icon */
 }
 
 .proj-content a i {
@@ -855,6 +867,109 @@ footer a i {
     transform: translateX(0);
 }
 
+/*-------TOGGLE THEME -----------*/
+
+/*-------TOGGLE THEME -----------*/
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background: var(--secon-bg-color);
+  border: 2px solid var(--secon-bg-color);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  box-shadow: 0 0 8px var(--bg-color);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.toggle-btn i {
+  color: var(--hover-colour);
+  transition: transform 0.3s ease;
+}
+
+/* Light Theme Variables */
+body.light-theme {
+  --text-color: #111111;
+  --hover-colour: #32468b;
+  --bg-color: #dad9e5;
+  --secon-bg-color: #a9b3cc;
+  --neon-box-shadow: 0 0 0.4rem #0f4083;
+  --font-neon-text-shadow: none;
+}
+
+/* Toggle button style in light mode */
+body.light-theme .toggle-btn {
+  background: var(--hover-colour);
+  box-shadow: 0 0 8px var(--hover-colour);
+}
+
+body.light-theme .toggle-btn i {
+  color: #fff;
+}
+
+/* Navbar + Footer Background/Text in Light Mode */
+body.light-theme header {
+  background: #a9b3cc;
+}
+
+body.light-theme footer {
+  background: #a9b3cc;
+  color: #111;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Link Styling */
+body.light-theme .navlist a {
+  color: #111;
+  transition: color 0.3s ease;
+}
+
+body.light-theme .navlist a:hover {
+  color: var(--hover-colour);
+  text-shadow: 0 0 30px rgba(50, 70, 139, 0.4); /* subtle hover glow */
+}
+
+/* Section and Content Text Colors */
+body.light-theme section,
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme p,
+body.light-theme li,
+body.light-theme .about-content,
+body.light-theme .skills-content,
+body.light-theme .education,
+body.light-theme .contact,
+body.light-theme .projects,
+body.light-theme .project-box {
+  color: #111;
+}
+
+body.light-theme span {
+  color: rgb(14, 40, 101);
+}
+
+body.light-theme big,
+body.light-theme small {
+  color: #040b14;
+}
+body.light-theme .skills-box,
+body.light-theme .project-box,
+body.light-theme .circle,
+body.light-theme .box {
+  background-color: transparent;
+  color: #111;
+}
 
 
 /*--------keyframes--------*/
@@ -950,7 +1065,6 @@ footer a i {
     }
 }
 
-/* BREAK POINTS */
 @media (max-width: 991px) {
     header,
     header.sticky {
@@ -1035,12 +1149,42 @@ footer a i {
     }
 
     .filter-buttons {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
         margin: 2.5rem 0;
+    }
+
+    .filter-buttons .btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .project-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .project-box {
+        padding: 1rem;
     }
 
     footer p {
         font-size: .8rem;
     }
+      .theme-toggle {
+    top: 15px;
+    right: 15px;
+  }
+
+  .toggle-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .toggle-btn i {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 420px) {
@@ -1054,12 +1198,13 @@ footer a i {
 
     .filter-buttons .btn {
         font-size: .8rem;
+        padding: 6px 12px;
     }
 
     .img-about img {
         max-width: 100%;
         height: auto;
-        width: 300px;
+        width: 280px;
     }
 
     .info-about1,
@@ -1071,4 +1216,131 @@ footer a i {
     .img-about p {
         font-size: 1rem;
     }
-}  
+
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-box {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+      .theme-toggle {
+    top: 12px;
+    right: 12px;
+  }
+
+  .toggle-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .toggle-btn i {
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 375px) {
+    html {
+        font-size: 75%;
+    }
+
+    header,
+    footer,
+    section {
+        padding: 10px 4%;
+    }
+
+    .navlist a {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    .home-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .home-content p,
+    .about p {
+        font-size: 0.9rem;
+    }
+
+    .filter-buttons .btn {
+        font-size: 0.75rem;
+        padding: 7px 10px;
+    }
+
+    .img-about img {
+        width: 240px;
+    }
+
+    .project-box {
+        font-size: 0.85rem;
+    }
+
+    footer p {
+        font-size: 0.55rem;
+    }
+    .theme-toggle {
+  top: 12px;
+  right: 12px;
+}
+
+.toggle-btn {
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.toggle-btn i {
+  font-size: 1rem;
+}
+
+}
+
+@media (max-width: 320px) {
+    html {
+        font-size: 70%;
+    }
+
+    .home-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .navlist a {
+        font-size: 0.85rem;
+    }
+
+    .img-about img {
+        width: 220px;
+    }
+
+    .filter-buttons .btn {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+    }
+
+    .project-box {
+        padding: 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    footer p {
+        font-size: 0.5rem;
+    }
+     .theme-toggle {
+    top: 10px;
+    right: 10px;
+  }
+
+  .toggle-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .toggle-btn i {
+    font-size: 0.9rem;
+  }
+}

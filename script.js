@@ -39,6 +39,7 @@ let changeText = () => {
 changeText();
 setInterval(changeText, 3000);
 
+
 // Read More toggle
 const readMoreBtn = document.getElementById('read-more-btn');
 const moreText = document.getElementById('more-text');
@@ -139,3 +140,32 @@ scrollBottom.forEach((el)=>observer.observe(el));
 
 const scrollTop = document.querySelectorAll(".scroll-top");
 scrollTop.forEach((el)=>observer.observe(el));
+
+ const toggle = document.getElementById("theme-toggle");
+    const icon = document.getElementById("theme-icon");
+    const body = document.body;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      body.className = savedTheme;
+      icon.className = savedTheme === "light-theme" ? "bx bx-moon" : "bx bx-sun";
+    }
+
+    toggle.onclick = () => {
+      body.classList.toggle("light-theme");
+      body.classList.toggle("dark-theme");
+
+      if (body.classList.contains("light-theme")) {
+        icon.className = "bx bx-moon";
+        localStorage.setItem("theme", "light-theme");
+      } else {
+        icon.className = "bx bx-sun";
+        localStorage.setItem("theme", "dark-theme");
+      }
+    };
+    
+    const toggleBtn = document.querySelector('.toggle-btn');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light-theme');
+});
