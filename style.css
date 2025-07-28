@@ -1141,6 +1141,11 @@ body.light-theme .box {
     text-align: center;
   }
 
+   .about{
+    grid-template-columns: 1fr !important;
+    flex-direction: column;
+  }
+
   .img-about img {
     width: 100%;
     max-width: 280px;
